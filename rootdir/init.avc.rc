@@ -1,0 +1,29 @@
+on init
+    setprop alsa.mixer.earpiece Headphone
+    setprop alsa.mixer.speaker Speaker
+    setprop alsa.mixer.headset Headphone
+    setprop alsa.mixer.headphone Headphone
+    setprop alsa.mixer.builtinMic Mic1
+    setprop alsa.mixer.headsetMic Mic1
+    setprop alsa.mixer.defaultCard baytrailaudio
+    setprop Audiocomms.Audience.IsPresent "false"
+    setprop alsa.mixer.defaultGain 1.0
+    setprop camera.hal.control 24
+    #audio setup delay - FW Init and first render time in ms
+    setprop lpa.audiosetup.time 85
+
+    # Temporary until ZSL works. Odd that Google specified this as a 
+    # property and not HAL output...
+    setprop camera.disable_zsl_mode 1
+
+    # Temporary disable HW+GPU JPEG decoding in skia to pass CTS test
+    setprop skia.libmix.disabled 1
+
+on post-fs
+    # Permissions for Vibrator
+    chown system system /sys/devices/platform/VIB8601:00/vibrator
+    chown system system /sys/devices/platform/VIB8601:00/pwm_ontime_div
+
+    # Permissions for pmdown_time
+    chown media system /sys/devices/platform/AMCR0F28:00/Baytrail\ Audio/pmdown_time
+    chown media system /sys/devices/platform/AMCR0F28:00/Baytrail\ Voice/pmdown_time

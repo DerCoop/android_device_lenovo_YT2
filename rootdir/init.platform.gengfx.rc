@@ -1,0 +1,16 @@
+on boot
+    #Give permission to system to use i915_videostatus sysfs interface
+    chown system system /sys/class/drm/card0/power/i915_videostatus
+    #Do not expose unecessary access
+    chmod 0600 /dev/dri/controlD64
+
+service coreu-init /system/bin/coreu init
+    oneshot
+
+on post-fs
+    start coreu-init
+
+service coreu /system/bin/coreu service
+    class main
+    user root
+    group graphics drmrpc
