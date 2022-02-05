@@ -14,6 +14,19 @@
 # limitations under the License.
 #
 
+# Inherit some common AOSP stuff.
+$(call inherit-product, vendor/lineage/config/common_full_tablet_wifionly.mk)
+
+# Inherit from YT2 device
+$(call inherit-product, device/lenovo/YT2/full_YT2.mk)
+
+# Device identifier. This must come after all inclusions
+PRODUCT_NAME := lineage_YT2
+PRODUCT_DEVICE := YT2
+PRODUCT_BRAND := Lenovo
+PRODUCT_MANUFACTURER := LENOVO
+PRODUCT_MODEL := YOGA Tablet 2-830F
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 ## We are a tablet, not a phone

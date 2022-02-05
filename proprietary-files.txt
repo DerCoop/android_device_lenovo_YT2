@@ -256,7 +256,7 @@ lib/libRSDriver_intel7.so
 lib/libcoreuclient.so
 lib/libcoreuinterface.so
 lib/libcoreuservice.so
-lib/libdrm.so
+#lib/libdrm.so
 lib/libdrm_intel.so
 lib/libgrallocclient.so
 lib/libgrallocgmm.so
